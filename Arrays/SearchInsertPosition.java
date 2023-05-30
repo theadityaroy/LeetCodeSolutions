@@ -1,3 +1,5 @@
+// 35. Search Insert Position : https://leetcode.com/problems/search-insert-position/
+
 class Solution {
     public int searchInsert(int[] nums, int target) {
         int low = 0;
@@ -17,3 +19,5 @@ class Solution {
         return low;
     }
 }
+
+// Time Complexity : O(log N)
