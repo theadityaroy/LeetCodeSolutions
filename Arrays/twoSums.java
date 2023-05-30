@@ -1,3 +1,5 @@
+// 1. Two Sum : https://leetcode.com/problems/two-sum/
+
 class Solution {
     public int[] twoSum(int[] nums, int target) {
         int[] arr = new int[2];
@@ -13,3 +15,6 @@ class Solution {
         return arr;
     }
 }
+
+// Time Complexity : O(N)
+// Space Complexity : O(N)
