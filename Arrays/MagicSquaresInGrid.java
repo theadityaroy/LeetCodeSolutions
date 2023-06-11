@@ -1,0 +1,55 @@
+// 840. Magic Squares In Grid : https://leetcode.com/problems/magic-squares-in-grid/
+
+class Solution {
+    public int numMagicSquaresInside(int[][] grid) {
+        if(grid.length < 3 || grid[0].length < 3){
+            return 0;
+        }
+        int magicSquares = 0;
+        for(int i = 0; i < grid.length - 2; i++){
+            for(int j = 0; j < grid[0].length - 2; j++){
+                if(isMagicSquare(grid, i, j)){
+                    magicSquares++;
+                }
+            }
+        }
+        return magicSquares;
+    }
+
+    private boolean isMagicSquare(int[][] grid, int row, int col){
+        boolean[] seen = new boolean[10];
+        int sum = grid[row][col] + grid[row][col+1] + grid[row][col+2];
+        int tempSum = 0;
+
+        //ROW SUM :
+        for(int i = row; i <= row+2; i++){
+            tempSum = 0;
+            for(int j = col; j <= col+2; j++){
+                if(grid[i][j] > 9 || grid[i][j] < 1 || seen[grid[i][j]]){
+                    return false;
+                }
+                seen[grid[i][j]] = true;
+                tempSum += grid[i][j];
+            }
+            if(tempSum != sum){
+                return false;
+            }
+        }
+
+        // COL SUM :
+        for(int j = col; j <= col+2; j++){
+            if(grid[row][j] + grid[row+1][j] + grid[row+2][j] != sum){
+                return false;
+            }
+        }
+
+        // DIAG SUM :
+        if(grid[row][col] + grid[row+1][col+1] + grid[row+2][col+2] != sum ||
+           grid[row][col+2] + grid[row+1][col+1] + grid[row+2][col] != sum) {
+            return false;
+        }
+        return true;
+    }
+}
+
+// Time Complexity : O(M*N)
